@@ -1,0 +1,214 @@
+	什么是Redis
+
+- Redis是远程的;
+- Redis是基于内存的;
+- Redis是非关系型数据库
+
+	Redis的应用场景
+
+- 缓存
+- 队列
+- 数据存储
+
+	Redis安装
+
+- 安装环境
+	1. 服务器环境: linux / CentOS release 6.8
+	2. Redis版本(2.8.13 http://download.redis.io/releases/)
+	3. 预装软件(gcc,tcl)
+
+- 服务端安装使用
+	1. tar -xf redis-2.8.13.tar.gz
+	2. make
+	3. sudo make install
+
+- 客户端使用
+	命令: redis-cli -h 127.0.0.1 -p 6379
+	redis 127.0.0.1:6379> info
+
+	Redis数据类型
+
+数据类型		存储的值							读写能力
+String		可以是字符串、整数或浮点,	  		对字符串操作	
+			统称为元素					  		对整数类型加减
+
+List		一个序列集合且每个节点都包	  		序列两端推入、或
+			好了一个元素				 		弹出元素 修剪、查找或
+										 		移除元素
+
+Set			各不相同的元素				  		从集合中插入或者删除元素
+
+Hash		有key-value的散列祖,其中key			按照key进行增加删除
+			是字符串,value是元素
+
+Sort Set	带分数的score-value有序集合,其  	集合插入，按照分数范围查找
+			中score为浮点,value为元素
+
+- String类型
+	Key		value(string/int/float)	
+
+redis 127.0.0.1:6379> set string1 exchris
+OK
+redis 127.0.0.1:6379> get string1
+"exchris"
+redis 127.0.0.1:6379> set string2 4
+redis 127.0.0.1:6379> get string2
+"4"
+redis 127.0.0.1:6379> incr string2  # 自增长incr命令
+(integer) 5
+redis 127.0.0.1:6379> get string2 
+"5"
+redis 127.0.0.1:6379> decrby string2 2 
+(integer) 3
+redis 127.0.0.1:6379> get string2
+"3"
+
+- list类型
+	
+	key  value(12)	左
+		 value(13)
+		 value(13)
+		 value(14)	右
+
+redis 127.0.0.1:6379>lpush list1 12
+redis 127.0.0.1:6379>lpush list1 13
+redis 127.0.0.1:6379>rpop list1
+"12"
+redis 127.0.0.1:6379>lpush list2 12
+redis 127.0.0.1:6379>lpush list2 13
+redis 127.0.0.1:6379>lpush list2 13
+redis 127.0.0.1:6379>llen list2
+"3"
+redis 127.0.0.1:6379> lrange list2 0 3
+"13"
+"13"
+"12"
+
+- Set类型
+redis 127.0.0.1:6379> sadd set1 12
+(integer) 1
+redis 127.0.0.1:6379> scard set1
+(integer) 1
+redis 127.0.0.1:6379> sadd set1 13
+(integer) 1
+redis 127.0.0.1:6379>sadd set1 13
+(integer) 0
+redis 127.0.0.1:6379>scard set1
+(integer) 2
+redis 127.0.0.1:6379>sismember set1 13
+(integer) 1
+redis 127.0.0.1:6379>srem set1 13
+(integer) 1
+redis 127.0.0.1:6379>sismember set1 13
+(integer) 0
+
+- hash类型
+			key1 value(string/int/float)
+	key 	key2 value(string/int/float)
+			key3 value(string/int/float)
+			key4 value(string/int/float)
+
+redis 127.0.0.1:6379> hset hash1 key1 12
+(integer) 1
+redis 127.0.0.1:6379> hget hash1 key1
+"12"
+redis 127.0.0.1:6379>
+redis 127.0.0.1:6379> hset hash1 key2 13
+(integer) 1
+redis 127.0.0.1:6379> hset hash1 key3 13
+(integer) 1
+redis 127.0.0.1:6379> hlen hash1
+(integer) 3
+redis 127.0.0.1:6379> hset hash1 key3 14
+(integer) 0
+redis 127.0.0.1:6379> hget hash1 key3
+"14"
+redis 127.0.0.1:6379> hmget hash1 key1 key2 key3
+"12"
+"13"
+"14"
+
+- sort set 类型
+	
+		score(10.1)		value(string/int/float)		rank:1
+  key  	score(9.1)		value(string/int/float)		rank:0
+  		score(11.2)		value(string/int/float)		rank:2
+
+redis 127.0.0.1:6379> zadd zset 10.1 val1
+(integer) 1
+redis 127.0.0.1:6379> zadd zset 11.2 val2
+(integer) 1
+redis 127.0.0.1:6379> zadd zset 9.2 val3
+(integer) 1
+redis 127.0.0.1:6379> zcard zset1
+(integer) 0
+redis 127.0.0.1:6379> zcard zset
+(integer) 3
+redis 127.0.0.1:6379> zrange zset 0 2 withscores
+1) "val3"
+2) "9.1999999999999993"
+3) "val1"
+4) "10.1"
+5) "val2"
+6) "11.199999999999999"
+redis 127.0.0.1:6379> zadd zset 12.2 val3
+(integer) 0
+redis 127.0.0.1:6379> zrange zset 0 2 withscores
+1) "val1"
+2) "10.1"
+3) "val2"
+4) "11.199999999999999"
+5) "val3"
+6) "12.199999999999999"
+redis 127.0.0.1:6379> zadd zset 12.2 val2
+(integer) 0
+redis 127.0.0.1:6379> zrange zset 0 2 withscores
+1) "val1"
+2) "10.1"
+3) "val2"
+4) "12.199999999999999"
+5) "val3"
+6) "12.199999999999999"
+redis 127.0.0.1:6379>
+
+        消息队列
+
+    1.1 消息队列概念
+- 队列结构的中间件;
+- 消息放入后,不需要立即处理;
+- 由订阅者/消费者按顺序处理。
+          入队                 出队
+业务系统   -》     消息队列     -》     队列处理系统
+
+    1.3 应用场景
+
+冗余                              扩展性
+        流量削峰    异步通信
+解耦                              排序保证
+
+    1.4 队列介质
+- Mysql: 可靠性高、易实现、速度慢;
+- Redis: 速度快，单条大消息包时效率低;
+- 消息系统: 专业性强、可靠,学习成本高
+
+    消息处理触发机制
+  -  死循环方式读取:易实现，故障时无法及时恢复
+  -  定时任务:压力均分,有处理量上限
+  -  守护进程:类似于PHP-FPM和PHP-CG，需要shell基础
+
+2.解耦案例:队列处理订单系统和配送系统
+2.1 架构设计
+                                配送系统
+订单系统
+接受用户订单   -》 订单队列表   crontab定时启动
+                   MySQL
+                                标记配送结果
+
+2.2 程序流程
+接受用户订单              定时脚本        配送处理系统
+Order.php                 goods.sh          Goods.php
+                            每分钟启动
+订单系统    队列表
+......      order_id    status
+            mobile      address               配送系统
+            created_at  updated_at,
