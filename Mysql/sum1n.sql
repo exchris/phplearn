@@ -1,0 +1,12 @@
+-- 循环1-n的和
+DROP PROCEDURE IF EXISTS sum1n;
+CREATE PROCEDURE sum1n(n INT(11)) RETURNS INT(11) COMMENT '循环1-n的和'
+BEGIN
+  DECLARE i INT DEFAULT 1;
+  DECLARE s INT DEFAULT 0;
+  WHILE i <= n DO 
+    SET s = s + i;
+    SET i = i + 1;
+  END WHILE;
+  SELECT s;
+END
