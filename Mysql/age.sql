@@ -1,19 +1,17 @@
-# 计算年龄的方法
-DROP FUNCTION IF EXISTS `age`;
-
-CREATE DEFINER = `root`@`localhost` FUNCTION age(birthday VARCHAR(15)) RETURNS INT(11) COMMENT '计算年龄的方法'
-BEGIN
-  DECLARE age INT(10); # 年龄初始化
-  IF birthday IS NULL THEN 
-  RETURN '';
-  END IF;
-  SET age = YEAR(CURDATE()) - YEAR(birthday) - 1;
-  IF MONTH(CURDATE()) >= MONTH(birthday) THEN
-  IF DAY(CURDATE()) > DAY(birthday) THEN
-  	SET age = age + 1;
-  END IF;
-  ELSEIF MONTH(CURDATE()) > MONTH(birthday) THEN
-  	SET age = age + 1;
-  END IF;
-  RETURN age;
-END
+-- 已知生日求年龄
+create function age(birthday date) returns int 
+begin 
+  declare age int(10);
+  if birthday IS NULL THEN
+    return '';
+  end if;
+  set age = year(curdate())-year(birthday)-1;
+  if month(curdate())==month(birthday) then
+    if day(curdate())>day(birthday) then
+	set age = age+1;
+    end if;
+  elseif month(curdate())>month(birthday) then
+	set age=age+1;
+   end if;
+   return age;
+end
