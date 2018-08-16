@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>楼盘详细-房源</title>
+
+<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+<link href="__PUBLIC__/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="__PUBLIC__/css/common/top.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/common/foot.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/PropertyDetailListing.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/scripts.js"></script>
+
+
+</head>
+
+
+
+
+<body>
+<div class="container-fluid">
+	<!--头部开始-->
+	<div id="top">
+		<div class="span2" id="logo">
+			<a href="{:U('Index/index')}"><img src="__PUBLIC__/property/logo.png" width="150" height="50" border="0"></a>
+		</div>
+		<div class="span2" id="City" style="position:relative;">
+			<span class="city1">无锡</span><a class="city-sel" href="#">[切换]
+				
+			</a>
+			<div class="city2"style="position:absolute; display:none; top:40px; left:0; background:#fff; width:60px">
+			<span style="width:60px; height:24px; display:block;line-height:24px;text-align:center;">南昌</span>
+			<span style="width:60px;height:24px;display:block;line-height:24px;text-align:center;">无锡</span>
+			</div> 
+		</div>
+		<script>
+		$(document).ready(function(){
+			$(".city-sel").click(function(){
+				$(".city2").show()
+			})
+			$(".city2 span").click(function(){
+				var city=$(this).text();
+				$(".city1").text(city);
+				$(".city2").hide()
+			})
+		});
+		</script>
+		<div class="span8" id="searchtext">
+			<div class="input-append">
+			  <input name="text" type="text" class="span2" id="appendedInputButton" style="width:400px; height:30px;" />
+			  <button class="btn btn-info" type="button" style="width:80px; height:40px;">搜索</button>
+	      </div>
+		</div>
+		
+	</div>
+	<!--头部结束-->
+
+	<div class="clear"></div>
+	
+	<div class="span12">
+		<!--导航开始-->
+		<div class="navbar">
+			<div class="navbar-inner">
+					<div class="nav-collapse collapse navbar-responsive-collapse" id="Navigation">
+						<ul class="nav">
+							<li>
+								<a href="{:U('Index/index')}">首页</a>
+							</li>
+							<li class="active">
+								<a href="{:U('Property/property')}">楼盘</a>
+							</li>
+							<li>
+								<a href="{:U('PropertyInformation/propertyinformation')}">楼盘资讯</a>
+							</li>
+							<!--<li>
+								<a href="#">二手房</a>
+							</li>
+							<li>
+								<a href="#">租房</a>
+							</li>
+							<li>
+								<a href="#">商铺</a>
+							</li>
+							<li>
+								<a href="#">写字楼</a>
+							</li>-->
+							
+						</ul>
+						<ul class="nav pull-right">
+							<li>
+								<a href="{:U('Account/login')}">登录</a>
+							</li>
+							<li>
+								<a href="{:U('Account/register')}">注册</a>
+							</li>
+							<li class="divider-vertical">
+							</li>
+							<li class="dropdown">
+								 <a data-toggle="dropdown" class="dropdown-toggle" href="#">我的优楼盘<strong class="caret"></strong></a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="{:U('UserInfo/myfavorite')}">我的收藏</a>
+									</li>
+									<li>
+										<a href="{:U('UserInfo/subscription')}">订阅管理</a>
+									</li>
+									<li>
+										<a href="{:U('UserInfo/browsehistory')}">浏览历史</a>
+									</li>
+									<li>
+										<a href="{:U('UserInfo/released')}">我的发布</a>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<a href="{:U('UserInfo/releasesale')}">发布出售</a>
+									</li>
+									<li>
+										<a href="{:U('UserInfo/releaserent')}">发布出租</a>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<a href="{:U('Index/index')}">退出</a>
+									</li>
+									
+								</ul>
+							</li>
+						</ul>
+					</div>
+					
+			</div>
+			
+		</div>
+		<!--导航结束-->
+	</div>
+	
+	<!--面包屑导航开始-->
+	<div id="bread" class="span12">
+		<a href="{:U('Index/index')}">优楼盘</a>
+		<span>></span>
+		<a href="{:U('Property/property')}">无锡楼盘</a>
+		<span>></span>
+		<a href="{:U('Property/property')}">新区</a>
+		<span>></span>
+		<span>新城尚东区</span>
+	</div> 
+	<!--面包屑导航结束-->
+	
+	<!--第一部分，楼盘房源开始-->
+	<div id="propertyDescription" class="span12">
+		<!--楼盘标题-->
+		<div class="property-title">
+			<h3>新城尚东区</h3>
+		</div>
+		<!--楼盘标题结束-->
+		
+		<!--详细导航，链接到单独的详细页面，房源、户型、相册......-->
+		<div class="Detailed-navigation">
+			<ul>
+				<li><a href="{:U('Property/propertydetail')}">楼盘主页</a></li>
+				<li class="current"><a href="{:U('Property/propertydetaillisting')}">房源</a></li>
+				<li><a href="{:U('Property/propertydetailapartment')}">户型</a></li>
+				<li><a href="{:U('Property/propertydetailprice')}">价格分析</a></li>
+				<li><a href="{:U('Property/propertydetailmap')}">地图交通</a></li>
+				<li><a href="{:U('Property/propertydetailalbums')}">相册</a></li>
+				<li><a href="{:U('Property/propertydetailinfo')}">资讯</a></li>
+			</ul>
+		</div>
+		<!--详细导航，链接到单独的详细页面，结束-->
+		
+		<!--房型选择-->
+		<div class="RoomChoose">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr height="30">
+					<td width="40"><span>房型：</span></td>
+					<td width="40"><a class="allCondition" href="#">全部</a></td>
+					<td width="840" class="Room">
+						<a href="#">一室</a>
+						<a href="#">二室</a>
+						<a href="#">三室</a>
+						<a href="#">四室</a>
+						<a href="#">5室以上</a>
+						<a href="#">别墅</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!--房型选择结束-->
+		
+		
+		<!--楼盘列表开始-->
+		<div class="span9" id="PropertyListing">
+			<table cellpadding="0" cellspacing="0" width="700" border="0">
+				<tr height="40" class="FirstLine">
+					<td align="center"><p>共有<span class="SearchResults">128</span>个符合要求的楼盘</p></td>
+					<td colspan="2" align="right">
+						<button class="btn btn-info" type="button" >默认</button>
+						<button class="btn btn-info" type="button" >团购</button>
+						<button class="btn btn-info" type="button" >价格↑</button>
+						<button class="btn btn-info" type="button" >人气↓</button>
+					</td>
+				</tr>
+				<tr height="150">
+					<td width="200" align="center"><a href="{:U('Property/propertydetail')}"><img src="__PUBLIC__/property/Property/Property01.jpg" width="160" height="117" border="0" /></a></td>
+					<td width="350">
+						<p><a href="{:U('Property/propertydetail')}" class="PropertyName">天一学区房，地铁房，现房完美呈现，126平三房两厅两卫</a></p>
+						<p>3室2厅2卫</p>
+						<p>面积：126平米</p>
+						<p>毛坯，可售：3套</p>
+					</td>
+					<td align="center" width="150"><span class="PropertyPrice">81万</span></td>
+				</tr>
+				<tr height="150">
+					<td width="200" align="center"><a href="{:U('Property/propertydetail')}"><img src="__PUBLIC__/property/Property/Property02.jpg" width="160" height="117" border="0" /></a></td>
+					<td width="350">
+						<p><a href="{:U('Property/propertydetail')}" class="PropertyName">天一学区房，地铁房，现房完美呈现，126平三房两厅两卫</a></p>
+						<p>3室2厅2卫</p>
+						<p>面积：126平米</p>
+						<p>毛坯，可售：3套</p>
+					</td>
+					<td align="center" width="150"><span class="PropertyPrice">81万</span></td>
+				</tr>
+				<tr height="150">
+					<td width="200" align="center"><a href="{:U('Property/propertydetail')}"><img src="__PUBLIC__/property/Property/Property03.jpg" width="160" height="117" border="0" /></a></td>
+					<td width="350">
+						<p><a href="{:U('Property/propertydetail')}" class="PropertyName">天一学区房，地铁房，现房完美呈现，126平三房两厅两卫</a></p>
+						<p>3室2厅2卫</p>
+						<p>面积：126平米</p>
+						<p>毛坯，可售：3套</p>
+					</td>
+					<td align="center" width="150"><span class="PropertyPrice">81万</span></td>
+				</tr>
+				<tr height="150">
+					<td width="200" align="center"><a href="{:U('Property/propertydetail')}"><img src="__PUBLIC__/property/Property/Property04.jpg" width="160" height="117" border="0" /></a></td>
+					<td width="350">
+						<p><a href="{:U('Property/propertydetail')}" class="PropertyName">天一学区房，地铁房，现房完美呈现，126平三房两厅两卫</a></p>
+						<p>3室2厅2卫</p>
+						<p>面积：126平米</p>
+						<p>毛坯，可售：3套</p>
+					</td>
+					<td align="center" width="150"><span class="PropertyPrice">81万</span></td>
+				</tr>
+				<tr height="150">
+					<td width="200" align="center"><a href="{:U('Property/propertydetail')}"><img src="__PUBLIC__/property/Property/Property05.jpg" width="160" height="117" border="0" /></a></td>
+					<td width="350">
+						<p><a href="{:U('Property/propertydetail')}" class="PropertyName">天一学区房，地铁房，现房完美呈现，126平三房两厅两卫</a></p>
+						<p>3室2厅2卫</p>
+						<p>面积：126平米</p>
+						<p>毛坯，可售：3套</p>
+					</td>
+					<td align="center" width="150"><span class="PropertyPrice">81万</span></td>
+				</tr>
+				<tr height="150">
+					<td width="200" align="center"><a href="{:U('Property/propertydetail')}"><img src="__PUBLIC__/property/Property/Property06.jpg" width="160" height="117" border="0" /></a></td>
+					<td width="350">
+						<p><a href="{:U('Property/propertydetail')}" class="PropertyName">天一学区房，地铁房，现房完美呈现，126平三房两厅两卫</a></p>
+						<p>3室2厅2卫</p>
+						<p>面积：126平米</p>
+						<p>毛坯，可售：3套</p>
+					</td>
+					<td align="center" width="150"><span class="PropertyPrice">81万</span></td>
+				</tr>
+				<tr height="150">
+					<td width="200" align="center"><a href="{:U('Property/propertydetail')}"><img src="__PUBLIC__/property/Property/Property07.jpg" width="160" height="117" border="0" /></a></td>
+					<td width="350">
+						<p><a href="{:U('Property/propertydetail')}" class="PropertyName">天一学区房，地铁房，现房完美呈现，126平三房两厅两卫</a></p>
+						<p>3室2厅2卫</p>
+						<p>面积：126平米</p>
+						<p>毛坯，可售：3套</p>
+					</td>
+					<td align="center" width="150"><span class="PropertyPrice">81万</span></td>
+				</tr>
+				<tr height="150">
+					<td width="200" align="center"><a href="{:U('Property/propertydetail')}"><img src="__PUBLIC__/property/Property/Property08.jpg" width="160" height="117" border="0" /></a></td>
+					<td width="350">
+						<p><a href="{:U('Property/propertydetail')}" class="PropertyName">天一学区房，地铁房，现房完美呈现，126平三房两厅两卫</a></p>
+						<p>3室2厅2卫</p>
+						<p>面积：126平米</p>
+						<p>毛坯，可售：3套</p>
+					</td>
+					<td align="center" width="150"><span class="PropertyPrice">81万</span></td>
+				</tr>
+				<tr height="150">
+					<td width="200" align="center"><a href="{:U('Property/propertydetail')}"><img src="__PUBLIC__/property/Property/Property10.jpg" width="160" height="117" border="0" /></a></td>
+					<td width="350">
+						<p><a href="{:U('Property/propertydetail')}" class="PropertyName">天一学区房，地铁房，现房完美呈现，126平三房两厅两卫</a></p>
+						<p>3室2厅2卫</p>
+						<p>面积：126平米</p>
+						<p>毛坯，可售：3套</p>
+					</td>
+					<td align="center" width="150"><span class="PropertyPrice">81万</span></td>
+				</tr>
+				<tr height="40" class="tr-bgclor">
+					  <td width="30" colspan="3">
+					  	<div class="span8" id="page">
+							<a href="#">尾页</a>
+							<a href="#">下一页</a>
+							<a href="#">2</a>
+							<a href="#">1</a>
+							<a href="#">上一页</a>
+					  		<a href="#">第一页</a>
+							
+						</div>
+					  </td>
+						
+					</tr>
+			</table>
+			
+		</div>
+		<!--楼盘房源结束-->
+		
+		<!--右侧，楼盘地图-->
+		<div class="span3" id="propertyMap">
+			
+		</div>
+		<!--右侧，楼盘地图-->
+		
+		
+	</div>
+	<!--第一部分，楼盘房源结束-->
+	
+	<!--第六部分，电联-->
+	<div class="span12" id="ContactWay">
+		<div class="ContactWay-title">
+			<h5>联系楼盘</h5>
+		</div>
+		<div class="ContactWay-left">
+			<img src="__PUBLIC__/property/propertytel.png" width="50" height="50" border="0"/>
+			<p>售楼处免费咨询电话（工作时间：9:00 - 21:00）</p>
+			<p class="tel">400 640 9988转12743</p>
+		</div>
+		<div class="ContactWay-right">
+			<p>参考售价：8000元/平米</p>
+			<p>地       址：[新区 旺庄] 珠江路与旺庄路交汇处(湘江路以西，龙山路...</p>
+		</div>
+	</div>
+	<!--第六部分，电联结束-->
+	
+	
+
+</div>
+
+	<div class="clear"></div>
+
+
+</body>
+</html>

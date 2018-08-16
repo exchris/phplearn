@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>登录</title>
+
+<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+<link href="__PUBLIC__/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="__PUBLIC__/css/common/foot.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/Login.css" rel="stylesheet" type="text/css" />
+
+<script src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+<script>
+$(document).ready(function(e){
+	$("#username").blur(function(e){
+		var name = $("#username").val();
+		if (name == '') {
+			$("#spanname").html("用户名不能为空");
+			$("#spanname").css({"color":"#f00"});
+		} else {
+			$("#spanname").hide();
+		}
+	});
+	
+	$("#password").blur(function(e){
+		var pwd = $("#password").val();
+		if (pwd == '') {
+			$("#spanpwd").html("密码不能为空");
+			$("#spanpwd").css({"color":"#f00"});
+		} else {
+			$("#spanpwd").hide();
+		}
+	});
+});
+</script>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			
+			<!--头部开始-->
+			<div id="top">
+				<a href="{:U('Index/index')}"><img src="__PUBLIC__/account/logo.png" width="150" height="50" border="0"/></a>
+			</div>
+			<!--头部结束-->
+			
+			<!--登录内容开始-->
+			<div id="login">
+			<form action="{:U('Account/login')}" id="log" method="post">
+				<table>
+					<tr height="50">
+						<td colspan="3"><h4>用户登录</h4></td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo">账户：</label></td>
+						<td><input type="text" name="username" id="username" style="height:30px;"></td>
+						<td><span class="help-inline" id="spanname"></span></td>
+					</tr>
+					
+					
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo">密码：</label></td>
+						<td><input type="password" name="password" id="password" style="height:30px;"></td>
+						<td><span class="help-inline" id="spanpwd"></span></td>
+					</tr>
+					
+					<tr height="50" id="captcha-container">
+						<td height="24" align="right"><label class="control-label" for="inputInfo">验证码:</label></td>
+						<td><input type="text" name="captcha" id="captcha"/></td>
+						<td> <img id="verifyimg" src="{:U('Account/verifyImg')}"  alt="点击更换" title="点击更换"/></td>
+					</tr>
+					
+					<tr>
+						<td></td>
+						<td valign="middle" colspan="2">
+							 <button class="btn btn-info" type="button" onclick="login()">登录</button>
+							 <a href="{:U('Account/getpassword')}" class="forgetpwd">忘记密码</a>
+							 <a href="{:U('Account/register')}">免费注册</a>
+						</td>
+					</tr>
+					
+				</table>
+			</form>
+				
+			</div>
+			<!--登录内容结束-->
+			
+		</div>
+	</div>
+</div>
+<script>
+function login() {
+	var name = $("#username").val();
+	var pwd = $("#password").val();
+	
+	if (name == '' || pwd == '') {
+		alert("请输入用户名以及密码");
+	} else {
+		$("#log").submit();
+	}
+}
+
+//验证码生成
+var captcha_img = $('#captcha-container').find('img');
+var verifyimg = captcha_img.attr("src");
+captcha_img.attr('title', '点击刷新');
+captcha_img.click(function(){
+	if (verifyimg.indexOf('?') > 0) {
+		$(this).attr("src", verifyimg+'&random='+Math.random());
+	} else {
+		$(this).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+	}
+});
+</script>
+</body>
+</html>

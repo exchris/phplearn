@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>用户注册</title>
+
+<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+<link href="__PUBLIC__/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="__PUBLIC__/css/Register.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/common/foot.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+<script>
+$(document).ready(function(e) {
+	$("#email").blur(function(e) {
+		var pattern = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-]+)/;
+		var email = $("#email").val();
+		if (email == '') {
+			$("#spanemail").html("邮箱不能为空");
+			$("#spanemail").css({"color":"#F00"});
+		} else if (!pattern.test(email)) {
+			$("#spanemail").html("邮箱格式不正确");
+			$("#spanemail").css({"color":"#F00"});
+		} else {
+			$("#spanemail").hide();
+		}
+	});
+	
+	//密码
+	$("#password").blur(function(e) {
+		var pwd = $("#password").val();
+		if (pwd == '') {
+			$("#spanpassword").html("密码不能为空");
+			$("#spanpassword").css({"color":"#F00"});
+		} else if (pwd.length < 6) {
+			$("#spanpassword").html("密码不能少于6位");
+			$("#spanpassword").html({"color":"#F00"});
+		} else if (pwd.length > 15) {
+			$("#spanpassword").html("密码不能大于15位");
+			$("#spanpassword").css({"color":"#f00"});
+		}　else {
+			$("#spanpassword").hide();
+		}
+ 	}) ;
+	
+	$("#password1").blur(function(e) {
+		var pwd1 = $("#password1").val();
+		if (pwd1 == '') {
+			$("#spanpassword1").html("密码不能为空");
+			$("#spanpassword1").css({"color":"#f00"});
+		} else if (pwd1 != $("#password").val()) {
+			$("#spanpassword1").html("两次密码不一致");
+			$("#spanpassword1").css({"color":"#f00"});
+		} else {
+			$("#spanpassword1").hide();
+		}
+	});
+	
+	$("#username").blur(function(e) {
+		var name = $("#username").val();
+		if (name == '') {
+			$("#spanusername").html("用户名不能为空");
+			$("#spanusername").css({"color":"#f00"});
+		} else {
+			$("#spanusername").hide();
+		}
+	});
+	
+	$("#phone").blur(function(e) {
+		var phone = $("#phone").val();
+		var pattern = /^1[3578]\d{9}$/;
+		if (phone == '') {
+			$("#spanphone").html("手机号不能为空");
+			$("#spanphone").css({"color":"#f00"});
+		} else if (!pattern.test(phone)) {
+			$("#spanphone").html("手机格式不正确");
+			$("#spanphone").css({"color":"#f00"});
+		} else {
+			$("#spanphone").hide();
+		}
+	});
+});
+
+</script>
+
+
+</head>
+
+<body>
+	
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			
+			<!--头部开始-->
+			<div id="top">
+				<a href="{:U('Index/index')}"><img src="__PUBLIC__/account/logo.png" width="150" height="50" border="0"/></a>
+			</div>
+			<!--头部结束-->
+			
+			<!--注册内容开始-->
+			<div id="register">
+			<form action="{:U('Account/register')}" id="r" method="post">
+				<table>
+					<tr height="50">
+						<td colspan="3"><h4>用户注册</h4></td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo"><span class="Required">*</span>用户名：</label></td>
+						<td><input type="text" id="username" name="username"></td>
+						<td><span class="help-inline" id="spanusername"></span></td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo">性别：</label></td>
+						<td>
+							<select id="sex" name="sex">
+							  <option value="先生" selected>先生</option>
+							  <option value="女士">女士</option>
+							</select>
+						</td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo"><span class="Required">*</span>邮箱：</label></td>
+						<td><input type="email" id="email" name="email" ></td>
+						<td><span class="help-inline" id="spanemail"></span></td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo"><span class="Required">*</span>手机号：</label></td>
+						<td><input type="text" name="phone" id="phone" ></td>
+						<td><span class="help-inline" id="spanphone"></span></td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo"><span class="Required">*</span>密码：</label></td>
+						<td><input type="password" name="password" id="password"></td>
+						<td><span class="help-inline" id="spanpassword"></span></td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo"><span class="Required">*</span>确认密码：</label></td>
+						<td><input type="password" name="password1" id="password1"></td>
+						<td><span class="help-inline" id="spanpassword1"></span></td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo">角色：</label></td>
+						<td>
+							<select id="role" name="role">
+							  <option value="普通用户" selected>普通用户</option>
+							  <option value="开发商">开发商</option>
+							  <option value="经纪人">经纪人</option>
+							</select>
+						</td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo">真是姓名：</label></td>
+						<td><input type="text" name="name" id="inputInfo"></td>
+						<td></td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo">电话：</label></td>
+						<td><input type="text" id="inputInfo" name="tel" value="0510-85176789"></td>
+						<td></td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo">单位：</label></td>
+						<td><input type="text" id="inputInfo" name="unit"></td>
+						<td></td>
+					</tr>
+					<tr height="50">
+						<td height="24" align="right"><label class="control-label" for="inputInfo">地址：</label></td>
+						<td><input type="text" id="inputInfo" name="addr"></td>
+						<td></td>
+					</tr>
+					<tr height="50">
+						<td></td>
+						<td>
+							<label class="checkbox">
+								<input type="checkbox" class="ckbox" id="ck">
+									<a href="{:U('Account/useragreement')}" target="_blank">同意优楼盘用户协议</a>
+							</label>
+						</td>
+						<td></td>
+					</tr>
+					<tr height="50">
+						<td></td>
+						<td>
+							 <button class="btn btn-info" type="button" onclick="reg1()">完成注册</button>
+						</td>
+						<td> 
+							<a href="{:U('Account/login')}" class="btn btn-info">登录</a>
+						</td>
+					</tr>
+				</table>
+			</form>
+				
+			</div>
+			<!--注册内容结束-->
+			
+		</div>
+	</div>
+</div>
+	
+
+<script>
+function reg1() {
+	var username = $("#username").val(); //用户名
+	var email = $("#email").val();
+	var phone = $("#phone").val();
+	var  password = $("#password").val();
+	var password1 = $("#password1").val();
+	if (username == '' || email == '' || phone == '' || password == '' || password1 == '') {
+		alert("请输入完整信息用户名、邮箱、手机以及密码");
+	} else {
+		$("#r").submit();
+	}
+	
+}
+</script>
+	
+	
+</body>
+</html>

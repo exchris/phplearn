@@ -1,0 +1,304 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>发布出租</title>
+
+<link href="/yxy/Public/css/bootstrap.min.css" rel="stylesheet">
+<link href="/yxy/Public/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="/yxy/Public/css/common/top.css" rel="stylesheet" type="text/css" />
+<link href="/yxy/Public/css/common/foot.css" rel="stylesheet" type="text/css" />
+<link href="/yxy/Public/css/common/UserInfoLeft.css" rel="stylesheet" type="text/css" />
+<link href="/yxy/Public/css/ReleaseRent.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/yxy/Public/js/jquery.min.js"></script>
+<script type="text/javascript" src="/yxy/Public/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/yxy/Public/js/scripts.js"></script>
+
+
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+	<!--头部开始-->
+	<div id="top">
+		<div class="span2" id="logo">
+			<a href="#"><img src="/yxy/Public/userinfo/logo.png" width="150" height="50" border="0"></a>
+		</div>
+		<div class="span2" id="City" style="position:relative;">
+			<span class="city1">无锡</span><a class="city-sel" href="#">[切换]
+				
+			</a>
+			<div class="city2"style="position:absolute; display:none; top:40px; left:0; background:#fff; width:60px">
+			<span style="width:60px; height:24px; display:block;line-height:24px;text-align:center;">南昌</span>
+			<span style="width:60px;height:24px;display:block;line-height:24px;text-align:center;">无锡</span>
+			</div> 
+		</div>
+		<script>
+		$(document).ready(function(){
+			$(".city-sel").click(function(){
+				$(".city2").show()
+			})
+			$(".city2 span").click(function(){
+				var city=$(this).text();
+				$(".city1").text(city);
+				$(".city2").hide()
+			})
+		});
+		</script>
+		<div class="span5">
+		</div>
+		
+	</div>
+	<!--头部结束-->
+	
+	<div class="clear"></div>
+
+		<div class="span12">
+			<!--导航开始-->
+			<div class="navbar">
+				<div class="navbar-inner">
+						<div class="nav-collapse collapse navbar-responsive-collapse" id="Navigation">
+							<ul class="nav">
+								<li>
+									<a href="<?php echo U('Index/index');?>">首页</a>
+								</li>
+								<li>
+									<a href="<?php echo U('Property/property');?>">楼盘</a>
+								</li>
+								<li>
+									<a href="<?php echo U('Property/renting');?>">租房</a>
+								</li>
+								<li>
+									<a href="<?php echo U('Property/secondhandhouse');?>">二手房</a>
+								</li>
+								<li>
+									<a href="<?php echo U('Property/buy');?>">买房</a>
+								</li>
+								<li>
+									<a href="<?php echo U('Property/sellers');?>">卖房</a>
+								</li>
+								<li>
+									<a href="<?php echo U('Index/search');?>">搜索</a>
+								</li>
+							</ul>
+							<ul class="nav pull-right">
+								<li class="active">
+									<a href="#"><?php echo ($username); ?></a>
+								</li>
+								<li class="divider-vertical">
+								</li>
+								<li class="dropdown">
+									 <a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo ($username); ?><strong class="caret"></strong></a>
+									<ul class="dropdown-menu">
+										 <li>
+											<a href="MyFavorite.html">我的收藏</a>
+										</li>
+										<li>
+											<a href="Subscription.html">订阅管理</a>
+										</li>
+										<li>
+											<a href="BrowseHistory.html">浏览历史</a>
+										</li> 
+										<li>
+											<a href="Released.html">我的发布</a>
+										</li>
+										<li class="divider"></li>
+										<li>
+											<a href="ReleaseSale.html">发布出售</a>
+										</li>
+										<li>
+											<a href="ReleaseRent.html">发布出租</a>
+										</li>
+										<li class="divider"></li>
+										<li>
+											<a href="<?php echo U('Account/logout');?>">退出</a>
+										</li>
+										
+									</ul>
+								</li>
+							</ul>
+						</div>
+						
+				</div>
+				
+			</div>
+			<!--导航结束-->
+		</div>
+		
+		
+		
+	<div class="span12">	
+		<!--左侧-->
+		<div id="Left" class="span4">
+			<!--个人中心-->
+			<div class="personalCenter">
+				<div class="personalCenter-title">
+					<h5>个人中心</h5>
+				</div>
+				<div class="personalCenter-content">
+					<p class="userName"><?php echo ($username); ?></p>
+					<p><a href="ModifyPersonalInfo.html">修改个人资料</a></p>
+					<p><a href="ModifyPassword.html">修改密码</a></p>
+				</div>
+			</div>
+			<!--个人中心结束-->
+			
+			<!--用户功能权限-->
+			<div class="userFunction">
+				<ul class="nav nav-pills nav-tabs nav-stacked">
+					<li><a href="MyFavorite.html" class="MyFavorites"><img src="/yxy/Public/userinfo/MyFavorites.png" width="15" height="15" border="0">我的收藏</a></li>
+					
+					<li><a href="BrowseHistory.html" class="BrowseHistory"><img src="/yxy/Public/userinfo/BrowseHistory.png" width="15" height="15" border="0">浏览历史</a></li>
+					<li><a href="Subscription.html" class="Subscription"><img src="/yxy/Public/userinfo/Subscription.png" width="15" height="15" border="0">订阅管理</a></li>
+					<li><a href="Released.html" class="Released"><img src="/yxy/Public/userinfo/Released.png" width="15" height="15" border="0">已经发布</a></li>
+					<li><a href="ReleaseSale.html" class="ReleaseSale"><img src="/yxy/Public/userinfo/ReleaseSale.png" width="15" height="15" border="0">发布出售</a></li>
+					<li><a href="ReleaseRent.html" class="ReleaseRent"><img src="/yxy/Public/userinfo/ReleaseSale.png" width="15" height="15" border="0">发布出租</a></li>
+				</ul>
+			</div>
+			<!--用户功能权限结束-->
+			
+		</div>
+		<!--左侧结束-->
+		
+		<!--右侧-->
+		<div id="Right" class="span8">
+			<div class="releaseRent-title">
+				<h4>发布出租</h4>
+				<form action="<?php echo U('UserInfo/releasesale');?>" method="post">
+					<table>
+					<tr height="40">
+						<td height="24" align="center"><label class="control-label" for="inputInfo"><span class="Required">*</span>房子名称：</label></td>
+						<td><input type="text" id="name" name="name"></td>
+						<td><span class="help-inline" id="spanname"></span></td>
+					</tr>
+					<tr height="40">
+						<td height="24" align="center"><label class="control-label" for="inputInfo"><span class="Required">*</span>房子简介：</label></td>
+						<td><input type="text" id="full" name="full"></td>
+						<td><span class="help-inline" id="spanfull"></span></td>
+					</tr>
+					<tr height="40">
+						<td height="24" align="center"><label class="control-label" for="inputInfo"><span class="Required">*</span>出租类型：</label></td>
+						<td><select name="state" id="">
+							<option value="整套出租">整套出租</option>
+							<option value="整套出租">单间出租</option>
+							<option value="整套出租">床位出租</option>
+						</select></td>
+						<td><span class="help-inline" id="spanphone"></span></td>
+					</tr>
+					
+					<tr height="40">
+						<td height="24" align="center"><label class="control-label" for="inputInfo">房屋图片：</label></td>
+						<td><select name="image" id="">
+							<option value="Property01.jpg">Property01.jpg</option>
+							<option value="Property02.jpg">Property02.jpg</option>
+							<option value="Property03.jpg">Property03.jpg</option>
+							<option value="Property04.jpg">Property04.jpg</option>
+							<option value="Property05.jpg">Property05.jpg</option>
+							<option value="Property06.jpg">Property06.jpg</option>
+						</select></td>
+						<td></td>
+					</tr>
+					<tr height="40">
+						<td height="24" align="center"><label class="control-label" for="inputInfo">联系方式：</label></td>
+						<td><input type="text" id="tel" name="tel"></td>
+						<td></td>
+					</tr>
+
+					<tr height="40">
+						<td height="24" align="center"><label class="control-label" for="inputInfo">地址：</label></td>
+						<td><input type="text" id="addr" name="addr"></td>
+						<td></td>
+					</tr>
+					
+					<tr height="40">
+						<td height="24" align="center"><label for="inputInfo" class="control-label">价格:</label></td>
+						<td><input type="text" id="price" name="price" /></td>
+						<td></td>
+					</tr>
+					
+					<tr height="40">
+						<td height="24" align="center"><label for="inputInfo" class="control-label">户型:</label></td>
+						<td><select name="type" id="">
+							<option value="一室">一室</option>
+							<option value="二室">二室</option>
+							<option value="三室">三室</option>
+							<option value="四室">四室</option>
+							<option value="五室">五室</option>
+							<option value="五室以上">五室以上</option>
+						</select></td>
+						<td></td>
+					</tr>
+					
+					<tr height="40">
+						<td height="24" align="center"><label for="inputInfo" class="control-label">区域:</label></td>
+						<td><select name="area" id="">
+							<option value="新区">新区</option>
+							<option value="惠山">惠山</option>
+							<option value="锡山">锡山</option>
+							<option value="北塘">北塘</option>
+							<option value="南长">南长</option>
+							<option value="崇安">崇安</option>
+							<option value="滨湖">滨湖</option>
+							<option value="宜兴">宜兴</option>
+						</select></td>
+						<td></td>
+					</tr>
+					
+					<tr height="40">
+						<td height="24" align="center"><label for="inputInfo" class="control-label">朝向:</label></td>
+						<td><select name="xiang" id="">
+							<option value="东">东</option>
+							<option value="南">南</option>
+							<option value="东南">东南</option>
+							<option value="西南">西南</option>
+						</select></td>
+						<td></td>
+					</tr>
+					
+					<tr height="40">
+						<td height="24" align="center"><label for="inputInfo" class="control-label">装修状况:</label></td>
+						<td><select name="xiu" id="">
+							<option value="精装修">精装修</option>
+							<option value="简单装修">简单装修</option>
+							<option value="中等装修">中等装修</option>
+							<option value="毛坯">毛坯</option>
+							<option value="豪华装修">豪华装修</option>
+						</select></td>
+						<td></td>
+					</tr>
+					
+					<tr height="40">
+						<td height="24" align="center"><label for="inputInfo" class="control-label">面积:</label></td>
+						<td><input type="text" id="mianji" name="mianji" /></td>
+						<td></td>
+					</tr>
+					
+					<tr height="40">
+						<td></td>
+						<td>
+							 <button class="btn btn-info" type="submit">发布出租</button>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				</form>
+			</div>
+			
+		</div>
+		<!--右侧结束-->
+	</div>
+		
+</div>
+
+
+	<div class="clear"></div>
+
+
+
+
+</body>
+</html>
