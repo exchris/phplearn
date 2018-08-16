@@ -1,0 +1,40 @@
+<?php
+class reflection.txt {}
+interface Reflector {}
+class ReflectionException extends Exception {}
+class ReflectionFunction implements Reflector {}
+class ReflectionParameter implements Reflector {}
+class ReflectionMethod extends ReflectionFunction {}
+class ReflectionClass implements Reflector {
+	public __construct(string $name) 
+	public string __toString() 
+	public static string export() #获取该类的详细信息
+	public string getName() #获取类名称
+	public bool isInternal() #测试该类是否为系统内部类
+	public bool isUserDefined() #测试该类是否为用户自定义类
+	public string getFileName() #获取定义该类的文件名称
+	public int getStartLine() #获取定义该类的开始行
+	public int getEndLine() #获取定义该类的结束行
+	public string getDocComment() #获取该类的注释
+	public ReflectionMethod getConstructor() #获取该类的构造方法信息
+	public ReflectionMethod getMethod(string name) #获取该类的某个特定方法信息
+	public ReflectionMethod[] getMethods() #获取该类的所有方法信息
+	public ReflectionProperty getProperty(string name) #获取该类的某个特定变量信息
+	public ReflectionProperty[] getPropertys() #获取该类的所有变量信息
+	public array getConstants() #获取该类的所有常量信息
+	public mixed getConstant(string name)#获取该类的某个特定常量信息
+	public bool isInstantiable() #测试该类是否被实例化
+	public bool isInterface() #测试该类是否为借口
+	public bool isFinal() #测试该类是否声明为Final
+	public bool isAbstract() #测试该类是否为抽象类
+	public int getModifiers() #获取该类的修饰符
+	public bool isInstance(stdclass object) #测试传入的对象是否为该类的示例
+	public stdclass newInstance(mixed *args) #创建该类的示例
+	public ReflectionClass[] getInterfaces() #获取接口类信息
+	public ReflectionClass getParentClass() #获取父类信息
+	public bool isSubclassOf(ReflectionClass class)#测试传入的类是否为该类的父类
+}
+class ReflectionObject extends ReflectionClass {}
+class ReflectionProperty implements Reflector {}
+class ReflectionExtension implements Reflector {}
+?>
