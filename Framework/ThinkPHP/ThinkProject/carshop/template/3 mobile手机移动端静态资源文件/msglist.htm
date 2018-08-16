@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="Author" content="0431" />
+<title>这里是您的网站名称1</title>
+<meta name="keywords" content="这里是您的网站名称4" />
+<meta name="description" content="这里是您的网站名称" />
+
+<link rel="stylesheet" type="text/css" href="./style/subpage.css" />
+	
+<script type="text/javascript" src="./style/jquery.js"></script>
+	
+  
+
+
+<style>
+.head {
+	background: #1a2a38;
+}
+.foot {
+	background: #132330;
+}
+.nav {
+	background: #0152b5 !important
+}
+.nav_color {
+	background: #222;
+}
+</style>
+<script type="text/javascript" src="./style/nav.js"></script>
+	<script type="text/javascript" src="./style/cart_icon.js"></script>
+	
+<link rel="stylesheet" type="text/css" href="./style/child_vip.css" />
+	
+</head>
+
+<body>
+
+
+<ul class="nav">
+  <li><a href="/index.php/Cnm/Index/index.html" title="首页"><span class="iconfont">&#xe607;</span>首页</a></li><li><a href="/index.php/Cnm/About/index.html" title="关于我们">关于我们</a></li><li><a href="/index.php/Cnm/Zuche/index.html" title="如何租车">如何租车</a></li><li><a href="/index.php/Cnm/Huanche/index.html" title="如何还车">如何还车</a></li><li><a href="/index.php/Cnm/Team/index.html" title="费用说明">费用说明</a></li><li><a href="/index.php/Cnm/Service/index.html" title="优惠活动">优惠活动</a></li><li><a href="/index.php/Cnm/Product/index.html" title="车辆展示">车辆展示</a></li><li><a href="/index.php/Cnm/News/index.html" title="车辆保养">车辆保养</a></li><li><a href="/index.php/Cnm/Contact/index.html" title="联系我们">联系我们</a></li><li><a href="/index.php/Cnm/hr/index.html" title="人才招聘">人才招聘</a></li><li><a href="/index.php/Cnm/Msg/index.html" title="客户评价">客户评价</a></li>  
+</ul>
+<div class="allpage">
+    <div class="black-fixed iconfont">&#xe60f;</div>
+ 
+<div class="header">
+    <div class="head">
+        <a href="/index.php/Cnm/Index/index.html" title="首页" class="home-btn commonfont">&#xe608;</a>
+        <p class="top-title">留言</p>
+        
+        <div class="nav-btn commonfont">&#xe60b;</div>
+        
+    </div>
+</div>   
+
+    <div class="content">
+        <a href="/index.php/Cnm/Msg/to_msg.html" title="我要留言" class="to_msg common_bg">我要留言</a>
+        <ul class="had_msg" id="contentArea"></ul>    </div>
+    <div class="footer">
+    <div class="foot foot-relative" id="foot">
+        <div class="foot-relative">
+        <a href="/index.php/Cnm/Base/map.html" title="地图">
+                        <span class="commonfont">&#xe605;</span>
+                        <h3>地图</h3>
+                    </a><a href="tel:+86-0000-96877" title="电话">
+                        <span class="commonfont">&#xe604;</span>
+                        <h3>电话</h3>
+                    </a><a href="sms:+86-0000-96877" title="短信">
+                        <span class="commonfont">&#xe601;</span>
+                        <h3>短信</h3>
+                    </a><a href="/index.php/Cnm/Base/share.html" title="分享">
+                        <span class="commonfont">&#xe600;</span>
+                        <h3>分享</h3>
+                    </a>            
+            
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+<script language="javascript">
+		
+		function findNextPage(p){
+			
+			$(".imore").remove();
+			var data = { r: Math.random(),p:p };
+			$.ajax({type:"GET", url:"/index.php/Cnm/Msg/ajaxPageShow.html",data: data, dataType:"text",async:false,success:function (msg){
+				
+						switch(msg)
+						{
+						case 'none':
+							$("#contentArea").html('<center>暂无留言，感谢关注...</center>');
+							$(".imore").hide();
+						  break;
+						default:
+						
+							$("#contentArea").append(msg);		
+						}	
+						
+			}}); 	
+		
+		}
+		
+		$(function(){
+			findNextPage(1);
+		});
+
+</script>
+</body>
+</html>

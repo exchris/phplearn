@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="Author" content="0431" />
+<title>这里是您的网站名称1</title>
+<meta name="keywords" content="这里是您的网站名称4" />
+<meta name="description" content="这里是您的网站名称" />
+
+<link rel="stylesheet" type="text/css" href="./style/subpage.css" />
+	
+<script type="text/javascript" src="./style/jquery.js"></script>
+	
+  
+
+
+<style>
+.head {
+	background: #1a2a38;
+}
+.foot {
+	background: #132330;
+}
+.nav {
+	background: #0152b5 !important
+}
+.nav_color {
+	background: #222;
+}
+</style>
+<script type="text/javascript" src="./style/nav.js"></script>
+	<script type="text/javascript" src="./style/cart_icon.js"></script>
+	
+</head>
+
+<body>
+
+
+<ul class="nav">
+  <li><a href="/index.php/Cnm/Index/index.html" title="首页"><span class="iconfont">&#xe607;</span>首页</a></li><li><a href="/index.php/Cnm/About/index.html" title="关于我们">关于我们</a></li><li><a href="/index.php/Cnm/Zuche/index.html" title="如何租车">如何租车</a></li><li><a href="/index.php/Cnm/Huanche/index.html" title="如何还车">如何还车</a></li><li><a href="/index.php/Cnm/Team/index.html" title="费用说明">费用说明</a></li><li><a href="/index.php/Cnm/Service/index.html" title="优惠活动">优惠活动</a></li><li><a href="/index.php/Cnm/Product/index.html" title="车辆展示">车辆展示</a></li><li><a href="/index.php/Cnm/News/index.html" title="车辆保养">车辆保养</a></li><li><a href="/index.php/Cnm/Contact/index.html" title="联系我们">联系我们</a></li><li><a href="/index.php/Cnm/hr/index.html" title="人才招聘">人才招聘</a></li><li><a href="/index.php/Cnm/Msg/index.html" title="客户评价">客户评价</a></li>  
+</ul>
+<div class="allpage">
+    <div class="black-fixed iconfont">&#xe60f;</div>
+<div class="header">
+    <div class="head">
+               <a href="/index.php/Cnm/Index/index.html" title="首页" class="home-btn commonfont">&#xe608;</a>        <p class="top-title">车辆展示</p>
+        <div class="class-btn"><span class="commonfont">&#xe60a;</span></div>
+        <div class="nav-btn commonfont">&#xe60b;</div>
+    </div>
+    <div class="type">
+        <h1>搜索：</h1>
+        <div class="common-pro-search">
+            <form action="/index.php/Cnm/Product/index.html" method="post">
+                <input type="text" class="common-text" name="kws" placeholder="请输入搜索关键词"/>
+                <input type="submit" class="common-submit commonfont" value="&#xe602;"/>
+            </form>
+        </div>
+        <h1>车辆展示分类：</h1>
+        <ul>
+          <li>
+                <a href="/index.php/Cnm/Product/index/tid/1.html" title="汽车分类一">汽车分类一</a>
+                <span class="commonfont class-down">&#xe60c;</span>
+                <dl>
+                    
+                </dl>
+            </li><li>
+                <a href="/index.php/Cnm/Product/index/tid/2.html" title="车辆分类二">车辆分类二</a>
+                <span class="commonfont class-down">&#xe60c;</span>
+                <dl>
+                    
+                </dl>
+            </li>   
+        </ul>
+    </div>
+</div>   
+
+    <div class="content">
+        <div class="product-top">
+            <p>
+                        共<font>6</font>条信息
+            </p>
+        </div>
+        <ul class="common_news" id="contentArea"></ul>
+    </div>
+    <div class="footer">
+    <div class="foot foot-relative" id="foot">
+        <div class="foot-relative">
+        <a href="/index.php/Cnm/Base/map.html" title="地图">
+                        <span class="commonfont">&#xe605;</span>
+                        <h3>地图</h3>
+                    </a><a href="tel:+86-0000-96877" title="电话">
+                        <span class="commonfont">&#xe604;</span>
+                        <h3>电话</h3>
+                    </a><a href="sms:+86-0000-96877" title="短信">
+                        <span class="commonfont">&#xe601;</span>
+                        <h3>短信</h3>
+                    </a><a href="/index.php/Cnm/Base/share.html" title="分享">
+                        <span class="commonfont">&#xe600;</span>
+                        <h3>分享</h3>
+                    </a>            
+            
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+<input type="hidden" id="showType" value="b">
+<script language="javascript">
+		
+		function findNextPage(p , t , k){
+			
+			$(".imore").remove();
+			var data = { r: Math.random(),p:p ,tid:t ,k:k };
+			$.ajax({type:"GET", url:"/index.php/Cnm/Product/ajaxPageShow.html",data: data, dataType:"text",async:false,success:function (msg){
+						switch(msg)
+						{
+						case 'none':
+							$("#contentArea").html('<center>暂无资料，感谢关注...</center>');
+							$(".imore").hide();
+						  break;
+						default:
+							$("#contentArea").append(msg);		
+						}	
+						
+			}}); 	
+		
+		}
+		
+		$(function(){
+			findNextPage(1 , 0, '请输入搜索关键词');
+		});
+
+</script>  
+</body>
+</html>
