@@ -1,5 +1,6 @@
 <?php
-namespace factory;
+
+namespace Factory;
 
 /**
  * 简单动物工厂
@@ -8,27 +9,27 @@ namespace factory;
  */
 class SampleFactory
 {
-
     /**
      * 生产方法
      *
      * 生产动物
-     * @param  string $type 动物类型
+     * @param string $type 动物类型
      * @return mixed
      */
-    public static function produce($type='')
+    public static function produce($type = '')
     {
-        switch ($type) {
+        switch ($type)
+        {
             case 'chicken':
                 return new Chicken();
-                break;
+            break;
 
             case 'pig':
                 return new Pig();
-                break;
+            break;
 
             default:
-                echo "该农场不支持生产该农物~ \n";
+                echo "该农场不支持生产该动物~~~\n";
                 break;
         }
     }

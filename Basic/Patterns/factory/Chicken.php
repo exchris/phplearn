@@ -1,17 +1,17 @@
 <?php
-namespace factory;
+
+namespace Factory;
 
 /**
  * 实体鸡
- *
  */
-class Chicken implements AnimalInterface
+class Chicken implements IAnimal
 {
-  /**
-   * 构造函数
-   */
-  public function __construct()
-  {
-    echo "生产了一只鸡~ \n";
-  }
+    /**
+     * 构造函数
+     */
+    public function __construct()
+    {
+        echo "生产了一只鸡~~~\n";
+    }
 }
