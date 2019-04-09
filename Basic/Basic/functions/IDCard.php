@@ -1,6 +1,6 @@
 <?php
   header("Content-Type:text/html; charset=utf-8");
-  $cardid = '36220219920401285X';
+  $cardid = '36123419920401285X';
   # 只能是18位
   if (strlen($cardid) != 18) {
   	return false;
